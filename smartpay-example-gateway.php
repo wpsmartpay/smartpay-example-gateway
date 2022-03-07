@@ -12,8 +12,8 @@
  * License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-define("SMARTPAY_EXAMPLE_GATEWAY_PLUGIN_DIR", plugin_dir_path(__FILE__));
-
+// define plugin url
+define("SMARTPAY_EXAMPLE_GATEWAY_PLUGIN", plugin_dir_url(__FILE__));
 
 // register your gateway in smartpay gateways
 add_filter('smartpay_gateways', 'registerGateway');
@@ -55,7 +55,7 @@ function registerGateway(array $gateways = array()): array
     $gateways['example'] = array(
         'admin_label'       => 'Example Gateway',
         'checkout_label'    => 'Example Gateway',
-        'gateway_icon'      =>  SMARTPAY_EXAMPLE_GATEWAY_PLUGIN_DIR.'/example.jpg', // 120px*38px(width x height)
+        'gateway_icon'      =>  SMARTPAY_EXAMPLE_GATEWAY_PLUGIN.'assets/example.jpg', // 120px*38px(width x height)
     );
     return $gateways;
 }
