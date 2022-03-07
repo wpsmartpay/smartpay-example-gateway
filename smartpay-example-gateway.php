@@ -29,7 +29,7 @@ add_filter('smartpay_settings_gateways', 'gateway_settings', 110);
 add_action('smartpay_example_ajax_process_payment', 'ajax_process_payment');
 
 // process the subscription payment
-add_action('smartpay_demo_subscription_process_payment', 'subscriptionProcessPayment', 10, 2);
+add_action('smartpay_example_subscription_process_payment', 'subscriptionProcessPayment', 10, 2);
 
 // refund and cancel subscription when change the status to cancel
 add_action('smartpay_update_payment_status', 'paymentRefundAndSubscriptionCancel', 10, 3);
@@ -50,8 +50,8 @@ function registerGateway(array $gateways = array()): array
 {
     // check the gateway exist or not
     $gateways['example'] = array(
-        'admin_label'       => 'Demo Gateway',
-        'checkout_label'    => 'Demo Gateway',
+        'admin_label'       => 'Example Gateway',
+        'checkout_label'    => 'Example Gateway',
         'gateway_icon'      =>  'example.png',
     );
     return $gateways;
