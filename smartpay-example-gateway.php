@@ -12,6 +12,9 @@
  * License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
+define("SMARTPAY_EXAMPLE_GATEWAY_PLUGIN_DIR", plugin_dir_path(__FILE__));
+
+
 // register your gateway in smartpay gateways
 add_filter('smartpay_gateways', 'registerGateway');
 
@@ -52,7 +55,7 @@ function registerGateway(array $gateways = array()): array
     $gateways['example'] = array(
         'admin_label'       => 'Example Gateway',
         'checkout_label'    => 'Example Gateway',
-        'gateway_icon'      =>  'example.png',
+        'gateway_icon'      =>  SMARTPAY_EXAMPLE_GATEWAY_PLUGIN_DIR.'/example.jpg', // 120px*38px(width x height)
     );
     return $gateways;
 }
@@ -115,9 +118,11 @@ function gateway_settings(array $settings): array
 /**
  * payment processor
  * @param $payment_data
+ * @return void
  */
 function ajax_process_payment($payment_data){
     // process the payments
+    // do not need to return anything
 }
 
 /**
@@ -125,6 +130,7 @@ function ajax_process_payment($payment_data){
  * @param $payment
  * @param $newStatus
  * @param $oldStatus
+ * @return void
  */
 function paymentRefundAndSubscriptionCancel($payment, $newStatus, $oldStatus){
     // do staff refund and subscription cancel
@@ -135,8 +141,17 @@ function paymentRefundAndSubscriptionCancel($payment, $newStatus, $oldStatus){
  * @param $subscription
  * @param $newStatus
  * @param $oldStatus
+ * @return void
  */
 function subscriptionCancel($subscription, $newStatus, $oldStatus){
     // subscription cancel
+}
+
+/**
+ * Process the webhook for the payments
+ * @return void
+ */
+function processWebhook(){
+    // process webhook
 }
 
