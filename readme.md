@@ -124,4 +124,4 @@ add_action('init', 'process_webhook');
 ```
 
 All done, you have integrated your payment gateway for WPSmartPay and take the payments using your payment gateway.
-For more details, please visit our custom payment gateway [documentation](https://wpsmartpay.com/docs/wpsmartpay/configure-payment-methods/how-to-integrate-custom-payment-gateway).
+For more details, please visit our custom payment gateway [documentation](https://wpsmartpay.com/docs/developers/integrations/how-to-integrate-custom-payment-gateway).
