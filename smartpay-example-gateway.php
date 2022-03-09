@@ -16,7 +16,7 @@
 define("SMARTPAY_EXAMPLE_GATEWAY_PLUGIN", plugin_dir_url(__FILE__));
 
 // register your gateway in smartpay gateways
-add_filter('smartpay_gateways', 'registerGateway');
+add_filter('smartpay_gateways', 'register_gateway');
 
 // show your gateway name on SmartPay settings
 add_filter('smartpay_get_available_payment_gateways', 'register_to_available_gateway_on_setting');
@@ -32,16 +32,16 @@ add_filter('smartpay_settings_gateways', 'gateway_settings', 110);
 add_action('smartpay_example_ajax_process_payment', 'ajax_process_payment');
 
 // process the subscription payment
-add_action('smartpay_example_subscription_process_payment', 'subscriptionProcessPayment', 10, 2);
+add_action('smartpay_example_subscription_process_payment', 'subscription_process_payment', 10, 2);
 
 // refund and cancel subscription when change the status to cancel
-add_action('smartpay_update_payment_status', 'paymentRefundAndSubscriptionCancel', 10, 3);
+add_action('smartpay_update_payment_status', 'payment_refund_and_subscription_cancel', 10, 3);
 
 // cancel only subscription
-add_action('smartpay_update_subscription_status', 'subscriptionCancel', 10, 3);
+add_action('smartpay_update_subscription_status', 'subscription_cancel', 10, 3);
 
 // process your payment webhooks
-add_action('init', 'processWebhook');
+add_action('init', 'process_webhook');
 
 
 /**
@@ -49,7 +49,7 @@ add_action('init', 'processWebhook');
  * @param array $gateways
  * @return array
  */
-function registerGateway(array $gateways = array()): array
+function register_gateway(array $gateways = array()): array
 {
     // check the gateway exist or not
     $gateways['example'] = array(
@@ -121,6 +121,7 @@ function gateway_settings(array $settings): array
  * @return void
  */
 function ajax_process_payment($payment_data){
+    dd($payment_data);
     // process the payments
     // do not need to return anything
 }
@@ -132,7 +133,7 @@ function ajax_process_payment($payment_data){
  * @param $oldStatus
  * @return void
  */
-function paymentRefundAndSubscriptionCancel($payment, $newStatus, $oldStatus){
+function payment_refund_and_subscription_cancel($payment, $newStatus, $oldStatus){
     // do staff refund and subscription cancel
 }
 
@@ -143,7 +144,7 @@ function paymentRefundAndSubscriptionCancel($payment, $newStatus, $oldStatus){
  * @param $oldStatus
  * @return void
  */
-function subscriptionCancel($subscription, $newStatus, $oldStatus){
+function subscription_cancel($subscription, $newStatus, $oldStatus){
     // subscription cancel
 }
 
@@ -151,7 +152,7 @@ function subscriptionCancel($subscription, $newStatus, $oldStatus){
  * Process the webhook for the payments
  * @return void
  */
-function processWebhook(){
+function process_webhook(){
     // process webhook
 }
 
