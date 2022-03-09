@@ -11,11 +11,11 @@ Two types of hooks are available,
 Add the following filters to register your payment gateway settings
 1. register your payment gateway into SmartPay gateways
 ```php
-add_filter('smartpay_gateways', 'registerGateway');
+add_filter('smartpay_gateways', 'register_gateway');
 ```
 In the callback function
 ```php
-function registerGateway(array $gateways = array()): array
+function register_gateway(array $gateways = array()): array
 {
     // check the gateway exist or not
     $gateways['example'] = array(
@@ -89,7 +89,7 @@ Add the following actions to process the payments using your gateway
 ```php
 add_action('smartpay_example_ajax_process_payment', 'ajax_process_payment');
 ```
-> [N. B] - replace the example from the hook with your gateway id, in this case it is an 'example'
+> [N. B] - replace the example with your gateway id, in this case it is an 'example'
 
 In the callback function
 ```php
@@ -102,23 +102,23 @@ As similar WPSmartPay have number of action hooks to process/update the payments
 
 2. For the subscription/recurring payment
 ```php
-add_action('smartpay_example_subscription_process_payment', 'subscriptionProcessPayment', 10, 2);
+add_action('smartpay_example_subscription_process_payment', 'subscription_process_payment', 10, 2);
 ```
 > [N. B] - replace the example from the hook with your gateway id, in this case it is an 'example'
 
 2. For payment status change/update
 ```php
-add_action('smartpay_update_payment_status', 'onPaymentCompleted', 10, 3);
+add_action('smartpay_update_payment_status', 'on_payment_completed', 10, 3);
 ```
 
 3. Also, for subscription status change/update
 ```php
-add_action('smartpay_update_subscription_status', 'onPaymentPaused', 10, 3);
+add_action('smartpay_update_subscription_status', 'on_payment_paused', 10, 3);
 ```
 
 4. For webhook implementation or processing the webhook
 ```php
-add_action('init', 'processWebhook');
+add_action('init', 'process_webhook');
 ```
 
 All done, you have integrated your payment gateway for WPSmartPay and take the payments using your payment gateway.
