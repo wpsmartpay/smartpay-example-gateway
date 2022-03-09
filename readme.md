@@ -101,6 +101,8 @@ function ajax_process_payment($payment_data){
 As similar WPSmartPay have number of action hooks to process/update the payments through your gateway
 
 2. For the subscription/recurring payment
+
+>[N. B] - For recurring payment and processing subscription, you must have WPSmartPay Pro installed.
 ```php
 add_action('smartpay_example_subscription_process_payment', 'subscription_process_payment', 10, 2);
 ```
